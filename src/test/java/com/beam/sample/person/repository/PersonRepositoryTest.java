@@ -1,9 +1,10 @@
 package com.beam.sample.person.repository;
+
 import com.beam.sample.person.model.Address;
 import com.beam.sample.person.model.Gender;
 import com.beam.sample.person.model.Person;
 import com.mongodb.client.result.DeleteResult;
-import org.junit.jupiter.api.Assertions;
+import com.mongodb.client.result.UpdateResult;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -19,6 +20,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @SpringBootTest
 public class PersonRepositoryTest {
@@ -77,7 +80,7 @@ public class PersonRepositoryTest {
     public void deletePersonById() {
         insertPersonWithId("bde3d181-7fe6-439e-8e2d-ae2a32f522ea");
         DeleteResult deleteResult = mongoTemplate.remove(Query.query(Criteria.where("_id").is("bde3d181-7fe6-439e-8e2d-ae2a32f522ea")), "Person");
-        Assertions.assertEquals(1, deleteResult.getDeletedCount());
+        assertEquals(1, deleteResult.getDeletedCount());
         System.out.println(deleteResult);
     }
 
@@ -159,6 +162,12 @@ public class PersonRepositoryTest {
 
         personRepository.save(p);
 
+    }
+
+    @Test
+    public void updateAge(){
+        UpdateResult result = personRepository.updatePeople(21, 25);
+        assertEquals(8, result.getModifiedCount());
     }
 
 }

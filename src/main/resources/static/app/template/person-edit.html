@@ -1,0 +1,30 @@
+<form>
+    <div class="mb-3">
+      <label for="firstName" class="form-label">First Name</label>
+      <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp" ng-model="person.firstName">
+      <div id="firstNameHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="lastName" class="form-label">Last Name</label>
+        <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp" ng-model="person.lastName">
+        <div id="lastNameHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="age" class="form-label">Age</label>
+        <input type="text" class="form-control" id="age" aria-describedby="ageHelp" ng-model="person.age">
+        <div id="ageHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+
+    <div class="mb-3">
+        <label for="gender" class="form-label">Gender</label>
+        <select class="form-control" id="gender" aria-describedby="genderHelp" 
+                ng-options="gender for gender in genders"
+                ng-model="person.gender">
+        </select>
+        <div id="genderHelp" class="form-text">We'll never share your email with anyone else.</div>
+    </div>
+    
+    <button type="submit" class="btn btn-primary" ng-click="save()">Submit</button>
+  </form>

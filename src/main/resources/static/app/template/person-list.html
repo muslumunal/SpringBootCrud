@@ -1,0 +1,34 @@
+<button class="btn btn-success" ng-click="edit({})">New Person</button>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>FirstName</th>
+            <th>LastName</th>
+            <th>Age</th>
+            <th>Gender</th>
+            <th></th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <tr class="hand"
+            ng-repeat="person in people"
+            ng-class="{'juve': person.age <= 18}"
+            ng-dblclick="edit(person)">
+            <td>{{$index + 1}}</td>
+            <td>{{person.firstName}}</td>
+            <td>{{person.lastName | uppercase}}</td>
+            <td>{{person.age | ageFilter:30}}</td>
+            <td>{{person.gender}}</td>
+            <td>
+                <button class="btn btn-primary"
+                        ng-click="edit(person)">Edit</button>
+                <button class="btn btn-danger"
+                        ng-if="person.age > 18"
+                        ng-click="delete(person)" >Delete</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

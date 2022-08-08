@@ -14,6 +14,8 @@ import java.util.List;
 @Accessors(chain = true)
 public class Person extends Base {
 
+    public static final String IDENTIFIER = "E";
+
     private String firstName;
 
     private String lastName;

@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Title</title>
+
+    <base href="/" />
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
+    <link rel="stylesheet" href="/app/css/app.css" >
+
+</head>
+<body ng-app="my-app">
+
+    <div ng-view="" class="container"></div>
+<!--
+<div class="container"
+        ng-controller="FrontPageController">
+    <h3>{{message}}</h3>
+
+    <button class="btn btn-success" ng-click="edit({})">New Person</button>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>FirstName</th>
+                <th>LastName</th>
+                <th>Age</th>
+                <th>Gender</th>
+                <th></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            <tr ng-repeat="person in people"
+                ng-class="{'juve': person.age <= 18}">
+                <td>{{$index + 1}}</td>
+                <td>{{person.firstName}}</td>
+                <td>{{person.lastName | uppercase}}</td>
+                <td>{{person.age | ageFilter:50}}</td>
+                <td>{{person.gender}}</td>
+                <td>
+                    <button class="btn btn-primary"
+                            ng-click="edit(person)">Edit</button>
+                    <button class="btn btn-danger"
+                            ng-if="person.age > 18"
+                            ng-click="delete(person)" >Delete</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <form>
+        <div class="mb-3">
+          <label for="firstName" class="form-label">First Name</label>
+          <input type="text" class="form-control" id="firstName" aria-describedby="firstNameHelp" ng-model="person.firstName">
+          <div id="firstNameHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="lastName" class="form-label">Last Name</label>
+            <input type="text" class="form-control" id="lastName" aria-describedby="lastNameHelp" ng-model="person.lastName">
+            <div id="lastNameHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="age" class="form-label">Age</label>
+            <input type="text" class="form-control" id="age" aria-describedby="ageHelp" ng-model="person.age">
+            <div id="ageHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+
+        <div class="mb-3">
+            <label for="gender" class="form-label">Gender</label>
+            <select class="form-control" id="gender" aria-describedby="genderHelp" 
+                    ng-options="gender for gender in genders"
+                    ng-model="person.gender">
+            </select>
+            <div id="genderHelp" class="form-text">We'll never share your email with anyone else.</div>
+        </div>
+        
+        <button type="submit" class="btn btn-primary" ng-click="save()">Submit</button>
+      </form>
+</div>
+-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/4.17.21/lodash.min.js" integrity="sha512-WFN04846sdKMIP5LKNphMaWzU7YpMyCU245etK3g/2ARYbPK9Ub18eG+ljU96qKRCWh+quCY7yefSmlkQw1ANQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.3/angular.min.js" integrity="sha512-KZmyTq3PLx9EZl0RHShHQuXtrvdJ+m35tuOiwlcZfs/rE7NZv29ygNA8SFCkMXTnYZQK2OX0Gm2qKGfvWEtRXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.3/angular-route.min.js" integrity="sha512-y1qD3hz/IAf8W4+/UMLZ+CN6LIoUGi7srWJ3r1R17Hid8x0yXe+1B5ZelkaL1Mjzedzu0Cg3HBvDG02SAgSzBw==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/angular-resource/1.8.3/angular-resource.min.js" integrity="sha512-+ymw+FkoDhPw+7/1DWVtASoICv7lwuvpkbVFqc4ASu1D385wKiLHu4ofOOxhpTlWoza/yIivwwteembPbeBuMg==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
+<script src="/app/js/app.module.js"></script>
+<script src="/app/js/person-list.component.js"></script>
+<script src="/app/js/person-edit.component.js"></script>
+
+<!--
+<script>
+    
+    var app = angular.module("my-app", []);
+
+
+    app.controller("FrontPageController", function($scope){
+        $scope.save = function(){
+            let person = $scope.person;
+            if(person.id){
+                // update
+                let index = _.findIndex($scope.people, {id: person.id});
+                $scope.people.splice(index, 1, person);
+            }else{
+                // insert
+                $scope.max++;
+                person.id = $scope.max;
+                $scope.people.splice(0, 0, person);
+            }
+            $scope.person = {};
+        };
+
+        $scope.edit = function(person){
+            $scope.person = angular.copy(person);
+
+        };
+
+        $scope.delete = function(person){
+            /*
+            let arr = $scope.people;
+            let i = 0;
+            for(; i<arr.length; i++){
+                if(arr[i].firstName == person.firstName){
+                    break;
+                }
+            }
+            arr.splice(i, 1);
+            */
+
+            _.remove($scope.people, {id: person.id});
+        };
+        
+
+        $scope.init = function(){
+            $scope.message = "Hello AngularJS";
+
+            $scope.people = [
+                {
+                    id: 1,
+                    firstName: "emre",
+                    lastName: "cakir",
+                    age: 35,
+                    gender: "MALE"
+                },
+                {
+                    id: 2,
+                    firstName: "ali",
+                    lastName: "veli",
+                    age: 15,
+                    gender: "MALE"
+                },
+                {
+                    id: 3,
+                    firstName: "jane",
+                    lastName: "doe",
+                    age: 55,
+                    gender: "FEMALE"
+                }
+            ];
+
+            $scope.genders = ["MALE", "FEMALE"];
+       
+            $scope.max = 3;
+            $scope.person = {};
+        };
+
+        $scope.init();
+    });
+
+    app.filter("ageFilter", function() {
+        return function(input, age) {
+            return input <= age ? "Genc" : "Yetiskin";
+        }
+    });
+
+</script>
+-->
+</body>
+</html>
