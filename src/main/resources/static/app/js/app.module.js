@@ -11,12 +11,15 @@ app.config(function ($routeProvider, $locationProvider) {
     $locationProvider.html5Mode(true);
 
     $routeProvider
-        .when('/', {
+        .when('/home', {
             template: '<person-list></person-list>'
         })
         .when('/person/:id', {
             template: '<person-edit></person-edit>'
         })
+         .when('/login', {
+                    template: '<login></login>'
+                })
         .otherwise({
             redirectTo: "/"
         });
@@ -49,6 +52,18 @@ app.factory('PersonApi', ['$resource', function ($resource) {
         remove: {
             method: "DELETE",
             url: baseUrl + "/remove"
+        }
+    });
+}]);
+
+app.factory('AccountApi', ['$resource', function ($resource) {
+
+    var baseUrl = "/";
+
+    return $resource('/', {  }, {
+        login: {
+            method: 'POST',
+            url: "/login"
         }
     });
 }]);
