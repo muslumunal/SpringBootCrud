@@ -16,10 +16,7 @@ import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 
-import java.util.Arrays;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -35,18 +32,25 @@ public class PersonRepositoryTest {
     @Autowired
     private MongoTemplate mongoTemplate;
 
+    private String[] names = new String[] {"Müslüm", "John", "Emre", "Yasin", "Kağan"};
+    private String[] lastnames = new String[] {"Ünal", "Doe", "Çakır", "Olgun", "Algül"};
+
+    private Random random = new Random(System.currentTimeMillis());
+
     private Person getMePerson() {
         return new Person()
-                .setAge(20)
-                .setFirstName("MÜslüm")
-                .setLastName("Ünal")
-                .setGender(Gender.MALE);
+                .setAge(10 + random.nextInt(50))
+                .setFirstName(names[random.nextInt(names.length)])
+                .setLastName(lastnames[random.nextInt(lastnames.length)])
+                .setGender(random.nextBoolean() ? Gender.MALE : Gender.FEMALE);
     }
 
 
     @Test
     public void insertPerson() {
-        insertPersonWithId(UUID.randomUUID().toString());
+        for(int i = 0; i < 23; i++) {
+            insertPersonWithId(UUID.randomUUID().toString());
+        }
     }
 
     public void insertPersonWithId(String id) {

@@ -1,7 +1,8 @@
 var app = angular.module("my-app",
     [
         'ngRoute',
-        'ngResource'
+        'ngResource',
+        'ui.bootstrap'
     ]);
 
 
@@ -67,3 +68,31 @@ app.factory('AccountApi', ['$resource', function ($resource) {
         }
     });
 }]);
+
+app.factory("AccountService", function(){
+
+    let loggedIn = false;
+    let observers = []; // array of functions
+
+    function getLoggedIn(){
+        return loggedIn;
+    }
+
+    function setLoggedIn(l){
+        loggedIn = l;
+        for(let i = 0; i < observers.length; i++){
+            observers[i](l);
+        }
+    }
+
+    function addObserver(o){
+        observers.push(o);
+    }
+
+    return {
+        setL: setLoggedIn,
+        getL: getLoggedIn,
+        addO: addObserver
+    }
+    
+});

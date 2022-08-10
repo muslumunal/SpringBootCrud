@@ -30,6 +30,13 @@ angular.module('my-app')
 
             $scope.init = function () {
                 $scope.people = PersonApi.list();
+
+                let paging = {
+                    currentPage: 1,
+                    pageSize: 10
+                };
+
+                $scope.paging = paging;
             };
 
             $scope.init();

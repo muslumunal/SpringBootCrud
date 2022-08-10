@@ -1,12 +1,13 @@
 angular.module('my-app')
     .component('login', {
         templateUrl: '/app/template/login.html',
-        controller: function ($scope, $routeParams, AccountApi, $location) {
+        controller: function ($scope, $routeParams, AccountApi, $location, AccountService) {
 
 
             $scope.login = function () {
                 AccountApi.login($scope.loginRequest, function (authenticationResponse) {
                     if (authenticationResponse.code == 0) {
+                        AccountService.setL(true);
                         $location.path("/home");
                     } else {
                         switch(authenticationResponse.code){
