@@ -28,6 +28,10 @@ angular.module('my-app')
                 console.log('js function exit');
             };
 
+            $scope.setPerson = function(person){
+                $scope.p = person;
+            };
+
             $scope.init = function () {
                 $scope.people = PersonApi.list();
 
@@ -37,6 +41,10 @@ angular.module('my-app')
                 };
 
                 $scope.paging = paging;
+
+                $scope.p = {};
+
+                $scope.date = new Date();
             };
 
             $scope.init();

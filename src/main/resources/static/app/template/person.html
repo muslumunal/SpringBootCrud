@@ -1,0 +1,6 @@
+<p> Hello
+    <span ng-if="person.firstName">{{person.firstName}}
+        <span ng-if="showLastName" ng-click="callMyName()">{{person.lastName | uppercase}}</span>
+    </span>
+    <span ng-if="!person.firstName">John Does</span>
+</p>

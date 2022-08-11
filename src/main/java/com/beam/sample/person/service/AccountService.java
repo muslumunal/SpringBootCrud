@@ -4,6 +4,7 @@ import com.beam.sample.person.dto.AuthenticationResponse;
 import com.beam.sample.person.model.Account;
 import com.beam.sample.person.repository.AccountRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import java.util.Optional;
@@ -15,6 +16,7 @@ public class AccountService {
     public static final String SESSION_ACCOUNT = "session.account";
 
     private final AccountRepository accountRepository;
+    private final PasswordEncoder passwordEncoder;
 
 
     public AuthenticationResponse login(String username, String password){
@@ -26,7 +28,7 @@ public class AccountService {
                     .setCode(11);
         }else{
             Account account = optionalAccount.get();
-            if(account.getPassword().equals(password)){
+            if(passwordEncoder.matches(password, account.getPassword())){
                 return new AuthenticationResponse()
                         .setAccount(account)
                         .setCode(0);

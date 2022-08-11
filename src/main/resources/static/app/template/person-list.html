@@ -2,6 +2,8 @@
 
 
 <p>There are {{people.length * 2}} people. </p>
+
+<p>{{date | timeago}}</p>
 <table class="table">
     <thead>
         <tr>
@@ -18,7 +20,8 @@
         <tr class="hand"
             ng-repeat="person in people | limitTo : 10 : 10 * (paging.currentPage - 1)"
             ng-class="{'juve': person.age <= 18}"
-            ng-dblclick="edit(person)">
+            ng-dblclick="edit(person)"
+            ng-click="setPerson(person)">
             <td>{{(10 * (paging.currentPage - 1)) + $index + 1}}</td>
             <td>{{person.firstName}}</td>
             <td>{{person.lastName | uppercase}}</td>
@@ -35,3 +38,8 @@
     </tbody>
 </table>
 <ul uib-pagination total-items="people.length" ng-model="paging.currentPage" items-per-page="paging.pageSize"></ul>
+
+<my-person pe="p"
+            show-last-name="true"></my-person>
+
+<person-edit></person-edit>
