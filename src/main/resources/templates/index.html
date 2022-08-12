@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en"  xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8"/>
     <title>Title</title>
@@ -11,10 +11,13 @@
     <link rel="stylesheet" href="/app/css/app.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
 
+    <script th:inline="javascript">
+        var current_user = /*[[${session.account}]]*/;
+    </script>
 </head>
 <body ng-app="my-app">
 
-<div class="container">
+<div class="container" ng-cloak>
 
 
     <header ng-controller="HeaderController">

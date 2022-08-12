@@ -2,6 +2,7 @@ package com.beam.sample.person.controller;
 
 import com.beam.sample.person.dto.AuthenticationResponse;
 import com.beam.sample.person.dto.AuthenticatonRequest;
+import com.beam.sample.person.model.Account;
 import com.beam.sample.person.service.AccountService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
@@ -36,5 +37,11 @@ public class AccountController {
     public String logout(HttpSession session){
         session.removeAttribute(SESSION_ACCOUNT);
         return "redirect:/login";
+    }
+
+    @GetMapping("me")
+    @ResponseBody
+    public Account me(HttpSession session){
+        return (Account) session.getAttribute(SESSION_ACCOUNT);
     }
 }

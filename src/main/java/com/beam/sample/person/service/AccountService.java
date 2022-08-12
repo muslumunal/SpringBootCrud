@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class AccountService {
 
-    public static final String SESSION_ACCOUNT = "session.account";
+    public static final String SESSION_ACCOUNT = "account";
 
     private final AccountRepository accountRepository;
     private final PasswordEncoder passwordEncoder;

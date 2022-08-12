@@ -65,11 +65,15 @@ app.factory('AccountApi', ['$resource', function ($resource) {
         login: {
             method: 'POST',
             url: "/login"
+        },
+        me: {
+            method: "GET",
+            url: "/me"
         }
     });
 }]);
 
-app.factory("AccountService", function(){
+app.factory("AccountService", function(AccountApi){
 
     let loggedIn = false;
     let observers = []; // array of functions
@@ -87,6 +91,18 @@ app.factory("AccountService", function(){
 
     function addObserver(o){
         observers.push(o);
+    }
+
+/*
+    AccountApi.me(function(data){
+        if(data){
+            setLoggedIn(true);
+        }
+    });
+    */
+
+    if(current_user){
+        setLoggedIn(true);
     }
 
     return {

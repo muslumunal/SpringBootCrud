@@ -1,7 +1,16 @@
+ [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+   display: none !important;
+ }
+
  .juve{
     background-color: beige;
 }
 
 .hand{
     cursor: pointer;
+}
+
+html {
+    overflow: -moz-scrollbars-vertical;
+    overflow-y: scroll;
 }
