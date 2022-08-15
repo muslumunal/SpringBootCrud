@@ -1,17 +1,19 @@
 angular.module('my-app')
-    .component('personEdit', {
-        templateUrl: '/app/template/person-edit.html',
-        controller: function ($scope, $routeParams, PersonApi, $location) {
+    .component('personEditB64', {
+        templateUrl: '/app/template/person-edit-b64.html',
+        controller: function ($scope, $routeParams, PersonApi, $location, Upload) {
 
             $scope.save = function(form){
 
                 if(form.$valid){
-                    PersonApi.persist($scope.person, function(){
-                        toastr.success("Person eklendi..");
-                        $location.path("/home");
+                    Upload.base64DataUrl($scope.file).then(function(data){
+                        $scope.person.avatar = data;
+                        PersonApi.persist($scope.person, function(){
+                            toastr.success("Person eklendi..");
+                            $location.path("/home");
+                        });
                     });
                 }else{
-                    console.log(form);
                     toastr.warning("Lütfen tüm alanları giriniz.");
                 }
             };

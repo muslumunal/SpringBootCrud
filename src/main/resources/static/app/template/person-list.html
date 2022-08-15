@@ -8,6 +8,7 @@
     <thead>
         <tr>
             <th>#</th>
+            <th></th>
             <th>FirstName</th>
             <th>LastName</th>
             <th>Age</th>
@@ -23,6 +24,7 @@
             ng-dblclick="edit(person)"
             ng-click="setPerson(person)">
             <td>{{(10 * (paging.currentPage - 1)) + $index + 1}}</td>
+            <td><img ng-src="/img/{{person.avatar}}" height="60"></td>
             <td>{{person.firstName}}</td>
             <td>{{person.lastName | uppercase}}</td>
             <td>{{person.age | ageFilter:30}}</td>
@@ -30,6 +32,10 @@
             <td>
                 <button class="btn btn-primary"
                         ng-click="edit(person)">Edit</button>
+                <button class="btn btn-primary"
+                        ng-click="edit64(person)">EditB64</button>
+                <button class="btn btn-primary"
+                        ng-click="editMulti(person)">Edit Multi</button>
                 <button class="btn btn-danger"
                         ng-if="person.age > 18"
                         ng-click="delete(person)" >Delete</button>

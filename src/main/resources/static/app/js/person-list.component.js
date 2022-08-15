@@ -7,6 +7,13 @@ angular.module('my-app')
                 $location.path("/person/" + (person.id ? person.id : "new"));
             };
 
+            $scope.edit64 = function (person) {
+                $location.path("/personb64/" + (person.id ? person.id : "new"));
+            };
+            $scope.editMulti = function (person) {
+                $location.path("/person-multi/" + (person.id ? person.id : "new"));
+            };
+
             $scope.delete = function (person) {
                 /* wrong
                 PersonApi.remove({ id: person.id });

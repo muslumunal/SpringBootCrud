@@ -33,8 +33,10 @@
     </div>
 
     <div class="mb-3">
-        <label for="file" class="form-label">File</label>
-        <input type="file" name="file" class="form-control" id="file" aria-describedby="ageHelp" ng-model="person.file"  ng-change="fileSelected()">
+        <label class="form-label">File</label>
+        <div class="button" ngf-select ng-model="file" name="file" ngf-pattern="'image/*'"
+             ngf-accept="'image/*'" ngf-max-size="20MB" ngf-min-height="100"
+             ngf-resize="{width: 100, height: 100}">Select</div>
         <div id="ageHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
 

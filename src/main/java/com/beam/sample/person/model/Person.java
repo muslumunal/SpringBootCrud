@@ -34,4 +34,6 @@ public class Person extends Base {
     @DBRef
     private List<Address> addressListE;
 
+    private String avatar;
+
 }

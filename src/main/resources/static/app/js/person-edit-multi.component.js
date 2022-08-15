@@ -1,17 +1,18 @@
 angular.module('my-app')
-    .component('personEdit', {
-        templateUrl: '/app/template/person-edit.html',
-        controller: function ($scope, $routeParams, PersonApi, $location) {
+    .component('personMulti', {
+        templateUrl: '/app/template/person-edit-multi.html',
+        controller: function ($scope, $routeParams, PersonApi, $location, Upload) {
 
             $scope.save = function(form){
 
                 if(form.$valid){
-                    PersonApi.persist($scope.person, function(){
+                   
+                    PersonApi.persistMulti({person: $scope.person, file: $scope.file}, function(){
                         toastr.success("Person eklendi..");
                         $location.path("/home");
                     });
+                
                 }else{
-                    console.log(form);
                     toastr.warning("Lütfen tüm alanları giriniz.");
                 }
             };
