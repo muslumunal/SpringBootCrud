@@ -1,5 +1,5 @@
 <button class="btn btn-success" ng-click="edit({})">New Person</button>
-
+<button class="btn btn-primary" ng-click="editInModal({})">New Person In Modal</button>
 
 <p>There are {{people.length * 2}} people. </p>
 
@@ -36,6 +36,8 @@
                         ng-click="edit64(person)">EditB64</button>
                 <button class="btn btn-primary"
                         ng-click="editMulti(person)">Edit Multi</button>
+                <button class="btn btn-success"
+                        ng-click="editInModal(person)">Edit In Modal</button>
                 <button class="btn btn-danger"
                         ng-if="person.age > 18"
                         ng-click="delete(person)" >Delete</button>

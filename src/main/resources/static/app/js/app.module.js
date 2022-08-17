@@ -148,6 +148,16 @@ app.factory("AccountService", function (AccountApi) {
 
 });
 
+app.factory("DataFactory", function(){
+    let genders = ["MALE", "FEMALE"];
+
+    return {
+        getGenders: function(){
+            return genders;
+        }
+    }
+});
+
 app.filter("timeago", function () {
     //time: the time
     //local: compared to what time? default: now

@@ -71,6 +71,7 @@ public class PersonService {
         String filename = null;
 
         try {
+
             filename = diskService.write(file.getBytes(), FilenameUtils.getExtension(file.getOriginalFilename()));
         } catch (IOException exc) {
             exc.printStackTrace();

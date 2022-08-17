@@ -38,5 +38,5 @@
         <div id="ageHelp" class="form-text">We'll never share your email with anyone else.</div>
     </div>
 
-    <button type="submit" class="btn btn-primary" ng-click="save(personForm)">Submit</button>
+    <button type="submit" class="btn btn-primary" ng-click="save(personForm)" ng-if="!hideSubmit">Submit</button>
 </form>

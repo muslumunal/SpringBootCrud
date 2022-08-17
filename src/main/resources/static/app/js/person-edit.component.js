@@ -1,7 +1,7 @@
 angular.module('my-app')
     .component('personEdit', {
         templateUrl: '/app/template/person-edit.html',
-        controller: function ($scope, $routeParams, PersonApi, $location) {
+        controller: function ($scope, $routeParams, PersonApi, $location, DataFactory) {
 
             $scope.save = function(form){
 
@@ -18,7 +18,7 @@ angular.module('my-app')
 
             $scope.init = function () {
 
-                $scope.genders = ["MALE", "FEMALE"];
+                $scope.genders = DataFactory.getGenders();
 
                 let id = $routeParams.id;
                 if ( id == 'new') {
